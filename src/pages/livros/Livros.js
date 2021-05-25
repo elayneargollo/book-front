@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getBook, getBookById }  from "../../services/api/book";
+import { getBook }  from "../../services/api/book";
 
 export default class Livros extends Component {
 
@@ -10,8 +10,6 @@ export default class Livros extends Component {
   async componentDidMount() {
     const result = await getBook();
     this.setState({books: result})
-
-    console.log(await getBookById(2)); // getbyid
   }
 
   render() {
@@ -22,7 +20,7 @@ export default class Livros extends Component {
       <div>
         <h1>Listar os filmes</h1>
         { books.map(book => (
-          <li key={book.id}>
+          <li key={book.isbn}>
             <h2>
               {book.title}
             </h2>
