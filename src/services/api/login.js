@@ -1,4 +1,5 @@
 import axios from '../../config/axios';
+import swal from 'sweetalert';
 
 export const getAllAccount = () =>
 {
@@ -8,7 +9,7 @@ export const getAllAccount = () =>
         return response.data;
     })
     .catch(error => {
-        throw error;
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -17,11 +18,11 @@ export const authenticate = data =>
     return axios
     .post(`/account/login`, data)
     .then(response => {
+        swal("Seja-bem vindo !");
         return response.data;
     })
     .catch(error => {
-       console.log(error.response.data);
-       throw error;
+       swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -33,7 +34,7 @@ export const getAccountById = id =>
         return response.data;
     })
     .catch(error => {
-        throw error;
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -45,8 +46,7 @@ export const createUser = user =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
-        throw error;
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -58,8 +58,7 @@ export const putUser = user =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
-        throw error;
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -71,6 +70,6 @@ export const deleteById = id =>
         return response.data;
     })
     .catch(error => {
-        throw error;
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }

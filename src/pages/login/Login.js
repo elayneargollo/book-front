@@ -1,49 +1,68 @@
 import React, { Component } from "react";
-import { authenticate }  from "../../services/api/login";
-import swal from 'sweetalert';
+import { authenticate } from "../../services/api/login";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import '../login/Sytle.css';
 
 export default class Login extends Component {
 
-  constructor(props)
-  {
+  constructor(props) {
     super(props);
     this.state = {
-      username : "",
-      password : "",
+      username: "",
+      password: "",
     }
   }
 
   handleClick() {
-    let credentials = { username : this.state.username, password : this.state.password};
-    const result = authenticate(credentials);
-    //this.boasvindas();
-  }
-
-  boasvindas() {
-    swal("Bem-vindo (a)", `${this.state.username}\n`, "success");
+    let credentials = { username: this.state.username, password: this.state.password };
+    authenticate(credentials);
   }
 
   render() {
+
     return (
-      <div>
-        <h1>Account</h1>
-        <form>
-          Enter your username:
-          <input type="text"
-           value={this.state.username}
-           onChange={(e) => this.setState({ username: e.target.value })}
-           placeholder="Enter your username"
-          />
+      <div className="conteudo">
+        <div className="box">
+          <h1>Login</h1>
+          <form>
 
-          Enter your password:
-          <input type="password"
-           value={this.state.password}
-           onChange={(e) => this.setState({ password: e.target.value })}
-           placeholder="Enter your password"
-          />
+            <div>
+              <TextField required id="standard-required" label="Enter your username" defaultValue="Hello World" variant="outlined" size="small"
+                value={this.state.username}
+                onChange={(e) => this.setState({ username: e.target.value })}
+              />
+            </div>
 
-        </form>
-        <button onClick={this.handleClick.bind(this)}>Login</button>
+            <div className="texto">
+              <TextField required id="standard-required" label="Enter your password" defaultValue="Hello World" variant="outlined" size="small"
+                value={this.state.password}
+                type="password"
+                autoComplete="current-password"
+                onChange={(e) => this.setState({ password: e.target.value })}
+              />
+            </div>
+
+          </form>
+
+          <div className="senhas">
+            <Link href="#" >
+              Cadastrar uma conta
+            </Link>
+          </div>
+
+          <div className="senhas">
+            <Link href="#" >
+              Esqueci minha senha
+            </Link>
+          </div>
+   
+          <div className="button">
+            <Button size="small" variant="contained" color="primary" onClick={this.handleClick.bind(this)}>Entrar</Button>
+          </div>
+
+        </div>
       </div>
     );
   }

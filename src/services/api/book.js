@@ -1,4 +1,5 @@
 import axios from '../../config/axios';
+import swal from 'sweetalert';
 
 const version = 'v1';
 
@@ -10,7 +11,7 @@ export const getBook = () =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -22,7 +23,7 @@ export const getBookById = id =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -34,7 +35,7 @@ export const deleteBookById = id =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -46,7 +47,7 @@ export const postBook = book =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
 
@@ -58,6 +59,6 @@ export const pustBook = book =>
         return response.data;
     })
     .catch(error => {
-        console.log('Ops ! Ocorreu um erro' + error);
+        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }
