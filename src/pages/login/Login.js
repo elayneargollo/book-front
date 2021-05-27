@@ -35,26 +35,25 @@ export default class Login extends Component {
               />
             </div>
             <div className="texto">
-              <TextField required id="standard-required" label="Enter your password" defaultValue="Hello World" variant="outlined" size="small" autoFocus
+              <TextField required id="standard-required2" label="Enter your password" defaultValue="Hello World" variant="outlined" size="small" autoFocus
                 value={this.state.password}
                 type="password"
-                autoComplete="current-password"
                 onChange={(e) => this.setState({ password: e.target.value })}
               />
             </div>
           </form>
           <div className="senhas">
             <Link href={cadastro} >
-              Cadastrar uma conta
+              Register an account
             </Link>
           </div>
           <div className="senhas">
             <Link href="#" >
-              Esqueci minha senha
+              I forgot my password
             </Link>
           </div>
           <div className="button">
-            <Button size="small" variant="contained" color="primary" onClick={this.handleClick.bind(this)}>Entrar</Button>
+            <Button size="small" variant="contained" color="primary" onClick={this.handleClick.bind(this)}>Log in</Button>
           </div>
         </div>
       </div>

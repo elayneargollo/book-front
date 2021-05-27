@@ -26,7 +26,7 @@ export default class Cadastrp extends Component {
     return (
       <div className="conteudo">
         <div className="box">
-          <h1>Cadastro</h1>
+          <h1>Register</h1>
           <form>
             <div>
               <TextField required id="standard-required" label="Enter your username" defaultValue="Hello World" variant="outlined" size="small"  autoFocus
@@ -50,7 +50,7 @@ export default class Cadastrp extends Component {
               />
             </div>
             <div className="button">
-                <Button size="small" variant="contained" color="primary" onClick={this.handleClick.bind(this)}>Cadastrar</Button>
+                <Button size="small" variant="contained" color="primary" onClick={this.handleClick.bind(this)}>Register</Button>
           </div>
           </form>
         </div>
