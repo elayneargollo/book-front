@@ -19,9 +19,11 @@ export const authenticate = data =>
     .post(`/account/login`, data)
     .then(response => {
         swal("Seja-bem vindo !");
+        console.log("sdsafa");
         return response.data;
     })
     .catch(error => {
+        console.log("oooo");
        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
     });
 }

@@ -3,9 +3,10 @@
     height: 100vh;
     background: #dfdfdf;
     display: flex;
-    flex-direction: row;
+
     justify-content: center;
     align-items: center;
+    flex-Direction: 'column',
 }
 
 .box {
@@ -28,7 +29,7 @@
 }
 
 .texto {
-  padding: 10px;
+  padding: 25px;
 }
 
 .senhas {
@@ -39,6 +40,5 @@
 
 h1{
   color: #556cd6;
+  padding: 10px;
 }
-
-

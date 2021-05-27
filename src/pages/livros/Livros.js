@@ -1,5 +1,15 @@
 import React, { Component } from "react";
 import { getBook }  from "../../services/api/book";
+import '../livros/Sytle.css';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 
 export default class Livros extends Component {
 
@@ -17,27 +27,56 @@ export default class Livros extends Component {
     const { books } = this.state;
 
     return (
-      <div>
-        <h1>Listar os filmes</h1>
-        { books.map(book => (
-          <li key={book.isbn}>
-            <h2>
-              {book.title}
-            </h2>
-            <p>
-              <strong>Categoria: </strong>
-              {book.category}
-            </p>
-            <p>
-              <strong>Preco: </strong>
-              R$ {book.price}
-            </p>
-            <p>
-              <strong>ISBN: </strong>
-              {book.isbn}
-            </p>
-          </li>
-        ))};
+    <div >
+
+  { books.map(book => (
+    <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            </div>
+
+            <Card>
+
+              <CardHeader
+
+                  action={
+                      <IconButton aria-label="settings">
+                      <MoreVertIcon />
+                      </IconButton>
+                  }
+                      title={book.title}
+                      subheader= {book.category}
+                  />
+
+                  <div className="media">
+                      <CardMedia
+                      //  image="/static/images/cards/paella.jpg"
+                          title="Paella dish"
+                      />
+                  </div>
+
+                  <CardContent>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                      This impressive paella is a perfect party dish and a fun meal to cook together with your
+                      guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                      </Typography>
+                  </CardContent>
+
+                  <CardActions>
+                  <Button size="small" color="primary">
+                  Detalhe
+                  </Button>
+                  <Button size="small" color="primary">
+                  Comprar
+                  </Button>
+                  </CardActions>
+
+                  </Card>
+          </div>
+        </div>
+
+      ))};
+          
       </div>
     );
   }

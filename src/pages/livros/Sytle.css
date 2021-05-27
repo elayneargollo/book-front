@@ -1,0 +1,24 @@
+.titulo {
+  width: 400px;
+  height: 400px;
+  border: 1px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 40px;
+  display: inline-block;
+}
+
+.media {
+  height: 0;
+  padding: 80px;
+}
+
+h1{
+  color: #556cd6;
+}
+
+.root
+{
+  
+}
+
