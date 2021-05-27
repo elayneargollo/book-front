@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getBook }  from "../../services/api/book";
+import { getBook } from "../../services/api/book";
 import '../livros/Sytle.css';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,6 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
+import { Grid } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Imagem from '../../assets/img/imagem.jpg';
 
 export default class Livros extends Component {
 
@@ -19,7 +22,7 @@ export default class Livros extends Component {
 
   async componentDidMount() {
     const result = await getBook();
-    this.setState({books: result})
+    this.setState({ books: result })
   }
 
   render() {
@@ -27,57 +30,50 @@ export default class Livros extends Component {
     const { books } = this.state;
 
     return (
-    <div >
+      <div >
 
-  { books.map(book => (
-    <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            </div>
+        <Grid container spacing={3} justify="center" alignItems="center" display='grid'>
+          {books.map(book => (
 
-            <Card>
+            <Grid item xs={5}>
+              <Paper textAlign='center'>
+                <Card>
 
-              <CardHeader
-
-                  action={
+                  <CardHeader
+                    action={
                       <IconButton aria-label="settings">
-                      <MoreVertIcon />
+                        <MoreVertIcon />
                       </IconButton>
-                  }
-                      title={book.title}
-                      subheader= {book.category}
+                    }
+                    title={book.title}
+                    subheader={book.category}
                   />
-
                   <div className="media">
-                      <CardMedia
-                      //  image="/static/images/cards/paella.jpg"
-                          title="Paella dish"
-                      />
+                    <CardMedia
+                      image={Imagem}
+                      title="Paella dish"
+                    />
                   </div>
-
                   <CardContent>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p">
                       This impressive paella is a perfect party dish and a fun meal to cook together with your
                       guests. Add 1 cup of frozen peas along with the mussels, if you like.
                       </Typography>
                   </CardContent>
-
                   <CardActions>
-                  <Button size="small" color="primary">
-                  Detalhe
+                    <Button size="small" color="primary">
+                      Detalhe
                   </Button>
-                  <Button size="small" color="primary">
-                  Comprar
+                    <Button size="small" color="primary">
+                      Comprar
                   </Button>
                   </CardActions>
-
-                  </Card>
-          </div>
-        </div>
-
-      ))};
-          
-      </div>
+                </Card>
+              </Paper>
+            </Grid>
+          ))};
+        </Grid>
+      </div >
     );
   }
 }
