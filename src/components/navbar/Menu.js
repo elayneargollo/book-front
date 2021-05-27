@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles} from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import { livros, login } from '../../routes/paths';
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,31 +25,30 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function ButtonAppBar() {
-
   const classes = useStyles();
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push("/login");
+  const handleClick2 = () => {
+    history.push(login);
   }
 
-  const menu = () => {
-    history.push("/livros");
+  const handleClick = () => {
+    history.push(livros);
   }
 
   return (
     <div  className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start"  className={classes.menuButton}  color="inherit" aria-label="menu">
-          <MenuIcon onClick={menu}/>
+          <IconButton edge="start" className={classes.menuButton}  color="inherit" aria-label="menu" onClick={handleClick}>
+          <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Menu
           </Typography>
-          <Button color="inherit" onClick={handleClick}>Login</Button>
+          <Button color="inherit" onClick={handleClick2}>Login</Button>
         </Toolbar>
-      </AppBar>
+       </AppBar>
     </div>
   );
 }

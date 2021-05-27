@@ -45,6 +45,7 @@ export const createUser = user =>
     return axios
     .post(`/account/`, user)  
     .then(response => {
+        swal("Parabéns", "Sua conta foi criada com sucesso", "success");
         return response.data;
     })
     .catch(error => {
