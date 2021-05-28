@@ -11,7 +11,7 @@ export const getBook = () =>
         return response.data;
     })
     .catch(error => {
-        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
+        return null;
     });
 }
 
@@ -23,7 +23,7 @@ export const getBookById = id =>
         return response.data;
     })
     .catch(error => {
-        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
+        swal("Ocorreu um erro", "", "error");
     });
 }
 

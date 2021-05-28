@@ -11,12 +11,14 @@ import Paper from '@material-ui/core/Paper';
 import { getBook, getBookById } from "../../services/api/book";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './Sytle.css'
+import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert';
 
 export default function ButtonAppBar() {
 
   const [books, setBooks] = useState({});
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   const detalhar = (id) => {
     async function loadBookId() {
@@ -42,6 +44,11 @@ export default function ButtonAppBar() {
   useEffect(() => {
     async function loadBookAll() {
       const response = await getBook();
+      if(response == null)
+      {
+        swal("Opis ... ocorreu um erro", "", "error");   
+        history.replace('/'); 
+      }
       setBooks(response);
       setLoading(false);
     }
@@ -77,11 +84,11 @@ export default function ButtonAppBar() {
                     <CardActions>
                       <Button size="small" color="primary"
                         onClick={() => detalhar(book.id)}>
-                        Detalhe
+                        To compose
                   </Button>
                       <Button size="small" color="primary"
                         onClick={() => comprar(book.id)}>
-                        Comprar
+                        Purchase
                   </Button>
                     </CardActions>
                   </Card>
