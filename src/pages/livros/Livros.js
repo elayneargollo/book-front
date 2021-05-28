@@ -1,88 +1,96 @@
-import React, { Component } from "react";
-import { getBook } from "../../services/api/book";
+import React, {useState, useEffect} from "react";
 import '../livros/Sytle.css';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
+import { getBook, getBookById } from "../../services/api/book";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import './Sytle.css'
+import swal from 'sweetalert';
 
-export default class Livros extends Component {
+export default function ButtonAppBar() {
 
-  state = {
-    books: [],
+  const [books, setBooks] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const detalhar = (id) => {
+    async function loadBookId() {
+      const response = await getBookById(id);
+      swal(response.title, response.description, "");
+    }
+    loadBookId();
   }
 
-  async componentDidMount() {
-    const result = await getBook();
-    this.setState({ books: result })
+  const comprar = (id) => {
+    swal("", "fazer rota", "");
   }
 
-  comprar = () => {
-    alert("criar rota para comprar");
-  }
+  const useStyles = {
+    root: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 800,
+    },
+  };
 
-  detalhar = () => {
-    alert("criar rota para detalhar");
-  }
+  useEffect(() => {
+    async function loadBookAll() {
+      const response = await getBook();
+      setBooks(response);
+      setLoading(false);
+    }
+    loadBookAll();
+  });
 
-  render() {
-
-    const { books } = this.state;
-
+  if (loading) {
     return (
       <div>
-
-        <Grid container spacing={3} justify="center" alignItems="center" display='grid'>
-          {books.map(book => (
-            <Grid item xs={5}>
-              <Paper textAlign='center'>
-                <Card className={styles.root}>
-                  <CardHeader
-                    title={book.title}
-                    subheader={book.category}
-                  />
-                    <CardMedia
-                     className={styles.media}
-                      image={'imagem.png'}
+        <CircularProgress/>
+      </div>
+    );
+  } else {
+    return (
+      <div  >
+        <div>
+          <Grid container spacing={3} justify="center" alignItems="center" display='grid'>
+            {books.map(book => (
+              <Grid item xs={5}>
+                <Paper textAlign='center'>
+                  <Card className={useStyles.root}>
+                    <CardHeader
                       title={book.title}
-                      style={styles.media}
+                      subheader={book.category}
                     />
-                  <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      This impressive paella is a perfect party dish and a fun meal to cook together with your
-                      guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                      </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary" onClick={this.detalhar.bind(this)}>
-                      Detalhe
+                    <CardMedia
+                      image={book.imagem}
+                      title={book.title}
+                      style={useStyles.media}
+                    />
+                    <CardContent>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" color="primary"
+                        onClick={() => detalhar(book.id)}>
+                        Detalhe
                   </Button>
-                    <Button size="small" color="primary" onClick={this.comprar.bind(this)}>
-                      Comprar 
+                      <Button size="small" color="primary"
+                        onClick={() => comprar(book.id)}>
+                        Comprar
                   </Button>
-                  </CardActions>
-                </Card>
-              </Paper>
-            </Grid>
-          ))};
+                    </CardActions>
+                  </Card>
+                </Paper>
+              </Grid>
+            ))};
         </Grid>
-      </div >
+        </div >
+      </div>
     );
   }
 }
-
-const styles = {
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 340,
-  },
-};
-
-
