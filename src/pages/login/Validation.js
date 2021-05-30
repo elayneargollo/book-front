@@ -1,4 +1,4 @@
-function ValidationField(username, password)
+function ValidationLoginFields(username, password)
 {
   if(username === "" && password === "")
   {
@@ -12,6 +12,6 @@ function ValidationField(username, password)
   } 
 }
 
-module.exports = {
-  ValidationField: ValidationField,
+module.exports = { 
+  ValidationLoginFields: ValidationLoginFields,
 };

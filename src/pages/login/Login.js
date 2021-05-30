@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import '../login/Sytle.css';
 import { cadastro } from '../../routes/paths';
-import { ValidationField } from "./Validation.js";
+import { ValidationLoginFields } from "./Validation.js";
 import swal from 'sweetalert';
 
 export default class Login extends Component {
@@ -90,7 +90,7 @@ export default class Login extends Component {
 
 function validationField(username, password)
 {
-  var result= ValidationField(username, password);
+  var result= ValidationLoginFields(username, password);
   
   if(result)
   {
