@@ -12,14 +12,14 @@ import { getBookById } from "../../services/api/book";
 //import { getBook, getBookById } from "../../services/api/book";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './Sytle.css'
-//import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert';
 
 export default function ButtonAppBar() {
 
   const [books, setBooks] = useState({});
   const [loading, setLoading] = useState(true);
-  //const history = useHistory();
+  const history = useHistory();
 
   const detalhar = (id) => {
     async function loadBookId() {
@@ -59,7 +59,7 @@ export default function ButtonAppBar() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const fetchData = () => {
 
@@ -71,6 +71,7 @@ export default function ButtonAppBar() {
       })
       .catch((error) => {
         swal("Opis ... ocorreu um erro", "", "error");   
+        history.replace('/'); 
       });
   };
 
