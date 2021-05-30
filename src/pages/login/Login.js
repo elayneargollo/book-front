@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import '../login/Sytle.css';
 import { cadastro } from '../../routes/paths';
+import { ValidationField } from "./Validation.js";
+import swal from 'sweetalert';
 
 export default class Login extends Component {
 
@@ -17,8 +19,15 @@ export default class Login extends Component {
   }
 
   handleClick() {
-    let credentials = { username: this.state.username, password: this.state.password };
-    authenticate(credentials);
+
+    let username = this.state.username;
+    let password = this.state.password;
+
+    if(!validationField(username, password))
+    {
+      let credentials = { username, password };
+      authenticate(credentials);
+    }
   }
 
   render() {
@@ -27,18 +36,32 @@ export default class Login extends Component {
       <div className="conteudo">
         <div className="box">
           <h1>Login</h1>
-          <form>
+          <form width='100%' noValidate>
             <div>
-              <TextField required id="standard-required" label="Enter your username" defaultValue="Hello World" variant="outlined" size="small"  autoFocus
-                value={this.state.username}
-                onChange={(e) => this.setState({ username: e.target.value })}
+              <TextField 
+              required 
+              id="standard-required" 
+              label="Enter your username" 
+              defaultValue="Hello World" 
+              variant="outlined" 
+              size="small"  
+              autoFocus
+              value={this.state.username}
+              onChange={(e) => this.setState({ username: e.target.value })}
               />
             </div>
             <div className="texto">
-              <TextField required id="standard-required2" label="Enter your password" defaultValue="Hello World" variant="outlined" size="small" autoFocus
-                value={this.state.password}
-                type="password"
-                onChange={(e) => this.setState({ password: e.target.value })}
+              <TextField 
+              required 
+              id="standard-required2" 
+              label="Enter your password" 
+              defaultValue="Hello World" 
+              variant="outlined" 
+              size="small" 
+              autoFocus
+              value={this.state.password}
+              type="password"
+              onChange={(e) => this.setState({ password: e.target.value })}
               />
             </div>
           </form>
@@ -53,10 +76,25 @@ export default class Login extends Component {
             </Link>
           </div>
           <div className="button">
-            <Button size="small" variant="contained" color="primary" onClick={this.handleClick.bind(this)}>Log in</Button>
+            <Button 
+            size="small" 
+            variant="contained" 
+            color="primary"
+            onClick={this.handleClick.bind(this)}>Log in</Button>
           </div>
         </div>
       </div>
     );
+  }
+}
+
+function validationField(username, password)
+{
+  var result= ValidationField(username, password);
+  
+  if(result)
+  {
+    swal("Field requeride", `${result}`, "error");
+    return true;
   }
 }
