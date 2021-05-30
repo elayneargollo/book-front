@@ -1,3 +1,10 @@
 .espacamento{
-  margin: 25px; padding: 25px; border: 1px solid #fff; 
+  margin: 10px; 
+  padding: 10px; 
+  border: 1px solid #fff; 
+}
+
+.novoUser{
+  padding: 5px; 
+  margin: 15px; 
 }
