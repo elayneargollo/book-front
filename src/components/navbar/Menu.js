@@ -7,11 +7,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import { livros, login, cadastro } from '../../routes/paths';
+import { livros, login, cadastro, user } from '../../routes/paths';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
-
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -54,6 +53,11 @@ export default function ButtonAppBar() {
     history.push(cadastro);
   }
 
+  const redirectUser = () => { 
+    setAnchorEl(null);
+    history.push(user);
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -80,10 +84,11 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             TransitionComponent={Fade}
           >
-            <MenuItem onClick={redirectBook}>Livros</MenuItem>
+            <MenuItem onClick={redirectBook}>Book</MenuItem>
             <MenuItem onClick={redirectLogin}>Login</MenuItem>
-            <MenuItem onClick={redirectRegister}>Cadastro</MenuItem>
+            <MenuItem onClick={redirectRegister}>Register</MenuItem>
             <MenuItem onClick={redirectHome}>Home</MenuItem>
+            <MenuItem onClick={redirectUser}>User</MenuItem>
           </Menu>
           <Button color="inherit" onClick={redirectLogin}>Login</Button>
         </Toolbar>

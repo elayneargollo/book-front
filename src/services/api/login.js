@@ -4,12 +4,12 @@ import swal from 'sweetalert';
 export const getAllAccount = () =>
 {
     return axios
-    .get(`/account`)
+    .get(`/account/`)
     .then(response => {
-        return response.data;
+        return response;
     })
     .catch(error => {
-        swal("Ocorreu um erro", `${error.response.data}\n`, "error");
+        swal("Ocorreu um erro", "", "error");
     });
 }
 
@@ -19,7 +19,6 @@ export const authenticate = data =>
     .post(`/account/login`, data)
     .then(response => {
         swal("Seja-bem vindo !");
-        console.log("sdsafa");
         return response.data;
     })
     .catch(error => {

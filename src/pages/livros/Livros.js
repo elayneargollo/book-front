@@ -41,7 +41,8 @@ export default function ButtonAppBar() {
     },
   };
 
-  useEffect(() => {
+ /* ta chamando mais de uma vez
+ useEffect(() => {
     async function loadBookAll() {
       const response = await getBook();
       if(response == null)
@@ -53,7 +54,24 @@ export default function ButtonAppBar() {
       setLoading(false);
     }
     loadBookAll();
-  });
+  });*/
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+
+    fetch('https://localhost:5001/api/Book/v1')
+      .then((response) => response.json())
+      .then((data) => {
+        setBooks(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        swal("Opis ... ocorreu um erro", "", "error");   
+      });
+  };
 
   if (loading) {
     return (
@@ -63,8 +81,8 @@ export default function ButtonAppBar() {
     );
   } else {
     return (
-      <div  >
-        <div>
+      <div>
+        <div className='espacamento'>
           <Grid container spacing={3} justify="center" alignItems="center" display='grid'>
             {books.map(book => (
               <Grid item xs={5}>
