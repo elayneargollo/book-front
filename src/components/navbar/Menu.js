@@ -4,13 +4,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { livros, login, cadastro, user } from '../../routes/paths';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
+import AppsIcon from '@material-ui/icons/Apps';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -71,10 +71,10 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
-            <MenuIcon />
+            <AppsIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Menu
+            
           </Typography>
           <Menu
             id="fade-menu"

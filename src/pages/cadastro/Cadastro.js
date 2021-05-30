@@ -40,7 +40,6 @@ export default class Cadastrp extends Component {
                 required
                 id="standard-required"
                 label="Enter your username"
-                defaultValue="Hello World"
                 variant="outlined"
                 size="small"
                 autoFocus
@@ -53,7 +52,6 @@ export default class Cadastrp extends Component {
                 required
                 id="standard-required"
                 label="Enter your password"
-                defaultValue="Hello World"
                 variant="outlined"
                 size="small"
                 autoFocus
@@ -68,7 +66,6 @@ export default class Cadastrp extends Component {
                 required
                 id="standard-required"
                 label="Enter your role"
-                defaultValue="Hello World"
                 variant="outlined"
                 size="small"
                 autoFocus

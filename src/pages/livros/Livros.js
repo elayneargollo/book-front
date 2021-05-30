@@ -8,17 +8,18 @@ import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import { getBook, getBookById } from "../../services/api/book";
+import { getBookById } from "../../services/api/book";
+//import { getBook, getBookById } from "../../services/api/book";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './Sytle.css'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert';
 
 export default function ButtonAppBar() {
 
   const [books, setBooks] = useState({});
   const [loading, setLoading] = useState(true);
-  const history = useHistory();
+  //const history = useHistory();
 
   const detalhar = (id) => {
     async function loadBookId() {
@@ -81,11 +82,10 @@ export default function ButtonAppBar() {
     );
   } else {
     return (
-      <div>
         <div className='espacamento'>
           <Grid container spacing={3} justify="center" alignItems="center" display='grid'>
             {books.map(book => (
-              <Grid item xs={5}>
+              <Grid item xs={5} key={book.id}>
                 <Paper textAlign='center'>
                   <Card className={useStyles.root}>
                     <CardHeader
@@ -115,7 +115,6 @@ export default function ButtonAppBar() {
             ))};
         </Grid>
         </div >
-      </div>
     );
   }
 }

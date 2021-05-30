@@ -17,6 +17,7 @@ import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import { cadastro } from '../../routes/paths';
 import { deleteById } from "../../services/api/login";
+import PersonIcon from '@material-ui/icons/Person';
 
 export default function User() {
 
@@ -47,12 +48,16 @@ export default function User() {
   }
 
   const deleteUser = (id) => {
-    async function loadBookId() {
+    async function deleteUserId() {
       const response = await deleteById(id);
       swal("", response, "success");
     }
-    loadBookId();
+    deleteUserId();
     refreshPage();
+  }
+
+  const editUser = (id) => {
+   alert('edit');
   }
 
   function refreshPage() {
@@ -60,7 +65,6 @@ export default function User() {
         window.location.reload(false);
     }, 1000);
 }
-
 
   if (loading) {
     return (
@@ -89,7 +93,7 @@ export default function User() {
                 {users.map((row) => (
                   <StyledTableRow key={row.username}>
                     <TableCell component="th" scope="row">
-                      {row.username}
+                    {row.username}
                     </TableCell>
                     <TableCell align="right">{row.id}</TableCell>
                     <TableCell align="right">{row.password}</TableCell>
@@ -99,12 +103,13 @@ export default function User() {
                         aria-label="delete"
                         onClick={() => deleteUser(row.id)}
                         title="delete user">
-                        <DeleteIcon />
+                        <DeleteIcon color="error"/>
                       </IconButton>
                       <IconButton
                         aria-label="edit"
+                        onClick={() => editUser(row.id)}
                         title="edit user">
-                        <EditIcon />
+                        <EditIcon color="primary"/>
                       </IconButton>
                     </TableCell>
                   </StyledTableRow>
@@ -119,8 +124,10 @@ export default function User() {
           variant="contained" 
           color="primary"
           onClick={() => register()}>
-          New user
+          <PersonIcon/>
+           New user
           </Button>
+          
         </div>
       </div>
 
