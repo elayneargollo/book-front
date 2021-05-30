@@ -5,18 +5,6 @@ import '../login/Sytle.css';
 import { createUser } from "../../services/api/login";
 import { RegistrationFieldsValidation } from "./Validation.js";
 import swal from 'sweetalert';
-
-function validationField(username, password, role)
-{
-  var result= RegistrationFieldsValidation(username, password, role);
-  
-  if(result)
-  {
-    swal("Field requeride", `${result}`, "error");
-    return true;
-  }
-}
-
 export default class Cadastrp extends Component {
 
   constructor(props) {
@@ -97,5 +85,15 @@ export default class Cadastrp extends Component {
       </div>
     );
   }
+}
 
+function validationField(username, password, role)
+{
+  var error = RegistrationFieldsValidation(username, password, role);
+  
+  if(error)
+  {
+    swal("Field requeride", `${error}`, "error");
+    return true;
+  }
 }

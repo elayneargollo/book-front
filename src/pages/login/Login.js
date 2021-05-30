@@ -90,11 +90,11 @@ export default class Login extends Component {
 
 function validationField(username, password)
 {
-  var result= ValidationLoginFields(username, password);
+  var error = ValidationLoginFields(username, password);
   
-  if(result)
+  if(error)
   {
-    swal("Field requeride", `${result}`, "error");
+    swal("Field requeride", `${error}`, "error");
     return true;
   }
 }
