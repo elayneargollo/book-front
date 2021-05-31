@@ -11,6 +11,12 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 import AppsIcon from '@material-ui/icons/Apps';
+import PersonIcon from '@material-ui/icons/Person';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import LockOpen from '@material-ui/icons/LockOpen';
+import Home from '@material-ui/icons/Home';
+import PersonAdd from '@material-ui/icons/PersonAdd';
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -83,12 +89,27 @@ export default function ButtonAppBar() {
             open={open}
             onClose={handleClose}
             TransitionComponent={Fade}
-          >
-            <MenuItem onClick={redirectBook}>Book</MenuItem>
-            <MenuItem onClick={redirectLogin}>Login</MenuItem>
-            <MenuItem onClick={redirectRegister}>Register</MenuItem>
-            <MenuItem onClick={redirectHome}>Home</MenuItem>
-            <MenuItem onClick={redirectUser}>User</MenuItem>
+             >
+            <MenuItem 
+            onClick={redirectBook}>
+            <MenuBookIcon/>
+            Book</MenuItem>
+            <MenuItem 
+            onClick={redirectLogin}>
+            <LockOpen/>
+            Login</MenuItem>
+            <MenuItem 
+            onClick={redirectRegister}>
+               <PersonAdd/>
+            Register</MenuItem>
+            <MenuItem 
+            onClick={redirectHome}>
+              <Home/>
+              Home</MenuItem>
+            <MenuItem 
+            onClick={redirectUser}>
+            <PersonIcon/>
+            User</MenuItem>
           </Menu>
           <Button color="inherit" onClick={redirectLogin}>Login</Button>
         </Toolbar>
