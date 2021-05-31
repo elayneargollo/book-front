@@ -16,6 +16,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LockOpen from '@material-ui/icons/LockOpen';
 import Home from '@material-ui/icons/Home';
 import PersonAdd from '@material-ui/icons/PersonAdd';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 
 
 const useStyles = makeStyles((theme) =>
@@ -44,22 +45,22 @@ export default function ButtonAppBar() {
     history.push(login);
   }
 
-  const redirectBook = () => { 
+  const redirectBook = () => {
     setAnchorEl(null);
     history.push(livros);
   }
 
-  const redirectHome = () => { 
+  const redirectHome = () => {
     setAnchorEl(null);
     history.push("/");
   }
 
-  const redirectRegister = () => { 
+  const redirectRegister = () => {
     setAnchorEl(null);
     history.push(cadastro);
   }
 
-  const redirectUser = () => { 
+  const redirectUser = () => {
     setAnchorEl(null);
     history.push(user);
   }
@@ -80,7 +81,6 @@ export default function ButtonAppBar() {
             <AppsIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            
           </Typography>
           <Menu
             id="fade-menu"
@@ -89,29 +89,33 @@ export default function ButtonAppBar() {
             open={open}
             onClose={handleClose}
             TransitionComponent={Fade}
-             >
-            <MenuItem 
-            onClick={redirectBook}>
-            <MenuBookIcon/>
+          >
+            <MenuItem
+              onClick={redirectBook}>
+              <MenuBookIcon />
             Book</MenuItem>
-            <MenuItem 
-            onClick={redirectLogin}>
-            <LockOpen/>
+            <MenuItem
+              onClick={redirectLogin}>
+              <LockOpen />
             Login</MenuItem>
-            <MenuItem 
-            onClick={redirectRegister}>
-               <PersonAdd/>
+            <MenuItem
+              onClick={redirectRegister}>
+              <PersonAdd />
             Register</MenuItem>
-            <MenuItem 
-            onClick={redirectHome}>
-              <Home/>
+            <MenuItem
+              onClick={redirectHome}>
+              <Home />
               Home</MenuItem>
-            <MenuItem 
-            onClick={redirectUser}>
-            <PersonIcon/>
+            <MenuItem
+              onClick={redirectUser}>
+              <PersonIcon />
             User</MenuItem>
           </Menu>
-          <Button color="inherit" onClick={redirectLogin}>Login</Button>
+          <Button 
+          color="inherit" 
+          onClick={redirectLogin}>
+               <ExitToApp />
+            Entrar</Button>
         </Toolbar>
       </AppBar>
     </div>
