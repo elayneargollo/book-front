@@ -16,33 +16,31 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import { cadastro } from '../../routes/paths';
-import { deleteById } from "../../services/api/login";
+import { deleteById, getAllAccount } from "../../services/api/login";
 import PersonIcon from '@material-ui/icons/Person';
 
 export default function User() {
 
   const classes = useStyles();
   const [users, setUsers] = React.useState({ "empty": "true", "dir": [] });
+
   const [loading, setLoading] = useState(true);
   let history = useHistory();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    async function getItems() {
 
-  const fetchData = () => {
-
-    fetch('https://localhost:5001/api/account')
-      .then((response) => response.json())
-      .then((data) => {
+      try {
+        const { data } = await getAllAccount();
         setUsers(data);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         swal("Ocorreu um erro", "", "error");
-      });
-  };
-
+      }
+    }
+    getItems();
+  }, []);
+  
   const register = () => {
     history.replace(cadastro); 
   }

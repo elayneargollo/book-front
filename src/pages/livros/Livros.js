@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import { getBookById } from "../../services/api/book";
+import { getBookById, getBook } from "../../services/api/book";
 //import { getBook, getBookById } from "../../services/api/book";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './Sytle.css'
@@ -42,38 +42,19 @@ export default function ButtonAppBar() {
     },
   };
 
- /* ta chamando mais de uma vez
- useEffect(() => {
-    async function loadBookAll() {
-      const response = await getBook();
-      if(response == null)
-      {
+  useEffect(() => {
+    async function getItems() {
+      try {
+        const  data  = await getBook();
+        setBooks(data);
+        setLoading(false);
+      } catch (error) {
         swal("Opis ... ocorreu um erro", "", "error");   
         history.replace('/'); 
       }
-      setBooks(response);
-      setLoading(false);
     }
-    loadBookAll();
-  });*/
-
-  useEffect(() => {
-    fetchData();
+    getItems();
   });
-
-  const fetchData = () => {
-
-    fetch('https://localhost:5001/api/Book/v1')
-      .then((response) => response.json())
-      .then((data) => {
-        setBooks(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        swal("Opis ... ocorreu um erro", "", "error");   
-        history.replace('/'); 
-      });
-  };
 
   if (loading) {
     return (

@@ -6,12 +6,12 @@ const version = 'v1';
 export const getBook = () =>
 {
     return axios
-    .get(`/Book/${version}`)  
+    .get('/Book/v1')  
     .then(response => {
         return response.data;
     })
     .catch(error => {
-        return null;
+        return error;
     });
 }
 
