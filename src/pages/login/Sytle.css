@@ -42,3 +42,12 @@ h1{
   color: #556cd6;
   padding: 10px;
 }
+
+.edit{
+  padding: 10px;
+}
+
+
+.editButton{
+  margin-right: 20px !important;
+}

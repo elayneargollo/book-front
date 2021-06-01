@@ -18,14 +18,17 @@ import { useHistory } from 'react-router-dom'
 import { cadastro } from '../../routes/paths';
 import { deleteById, getAllAccount } from "../../services/api/login";
 import PersonIcon from '@material-ui/icons/Person';
+import Modal from '../../components/modal/Modal';
 
 export default function User() {
 
   const classes = useStyles();
   const [users, setUsers] = React.useState({ "empty": "true", "dir": [] });
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   let history = useHistory();
+
 
   useEffect(() => {
     async function getItems() {
@@ -54,15 +57,16 @@ export default function User() {
     refreshPage();
   }
 
-  const editUser = (id) => {
-   alert('edit');
+  const editUser = (row) => {
+    setIsOpen(true);
+    setUser(row);
   }
 
   function refreshPage() {
     setTimeout(()=>{
         window.location.reload(false);
     }, 1000);
-}
+  }
 
   if (loading) {
     return (
@@ -74,6 +78,7 @@ export default function User() {
 
     return (
       <div>
+        {isOpen && <Modal user={user} setIsOpen={setIsOpen} />}
         <div className='espacamento'>
           <h1>Registered Users</h1>
           <TableContainer component={Paper}>
@@ -91,11 +96,11 @@ export default function User() {
                 {users.map((row) => (
                   <StyledTableRow key={row.username}>
                     <TableCell component="th" scope="row">
-                    {row.username}
+                    {row.username} 
                     </TableCell>
-                    <TableCell align="right">{row.id}</TableCell>
-                    <TableCell align="right">{row.password}</TableCell>
-                    <TableCell align="right">{row.role}</TableCell>
+                    <TableCell title="registration user" align="right">{row.id}</TableCell>
+                    <TableCell title="password user" align="right">{row.password}</TableCell>
+                    <TableCell title="role user" align="right">{row.role}</TableCell>
                     <TableCell align="right">
                       <IconButton
                         aria-label="delete"
@@ -105,7 +110,7 @@ export default function User() {
                       </IconButton>
                       <IconButton
                         aria-label="edit"
-                        onClick={() => editUser(row.id)}
+                        onClick={() => editUser(row)}
                         title="edit user">
                         <EditIcon color="primary"/>
                       </IconButton>
@@ -125,10 +130,8 @@ export default function User() {
           <PersonIcon/>
            New user
           </Button>
-          
         </div>
       </div>
-
     );
   }
 }

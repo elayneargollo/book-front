@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { getBookById, getBook } from "../../services/api/book";
-//import { getBook, getBookById } from "../../services/api/book";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './Sytle.css'
 import { useHistory } from 'react-router-dom'
